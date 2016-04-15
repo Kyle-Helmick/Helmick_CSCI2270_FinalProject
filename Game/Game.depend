@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1460754896 source:/home/kyle/Documents/Helmick_Stevenson_CSCI2270_FinalProject/Game/src/Timer.cpp
+	"Timer.h"
+	<iostream>
+	<stdio.h>
+	<time.h>
+
+1460754888 /home/kyle/Documents/Helmick_Stevenson_CSCI2270_FinalProject/Game/include/Timer.h
+
+1460757618 source:/home/kyle/Documents/Helmick_Stevenson_CSCI2270_FinalProject/Game/main.cpp
+	<iostream>
+	<stdio.h>
+	<cstdlib>
+	"Timer.h"
+	"Printing.h"
+
+1460756658 /home/kyle/Documents/Helmick_Stevenson_CSCI2270_FinalProject/Game/include/Printing.h
+	<iostream>
+
+1460756809 source:/home/kyle/Documents/Helmick_Stevenson_CSCI2270_FinalProject/Game/src/Printing.cpp
+	"Printing.h"
+	"Timer.h"
+	<iostream>
+	<stdio.h>
+
