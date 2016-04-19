@@ -23,10 +23,10 @@ Showing adjacent cities
 
 Player's City
     Adjacent Enemy -- (Health)
-    (etc) -- (Health)
+    Adjacent Enemy 2 etc -- (Health)
 Player's Second City (etc)
     Adjacent Enemy -- (Health)
-    (etc) -- (Health
+    Adjacent Enemy 2 etc -- (Health)
 #########Action Menu#########
 #  -Attack (A)
 #  -Fortify (F)
@@ -40,8 +40,8 @@ Fortify Menu
 
 #########Fortify Menu#########
 #  -Pick a city to fortify-  #
-#  -Player's City
-#  -Player's City 2 etc
+#  -Player's City -- (Health)
+#  -Player's City 2 etc -- (Health)
 ##############################
 Input:
 (If city not found repeat and state error above menu)
@@ -50,16 +50,16 @@ Attack Menu
 
 ###########Attack Menu###########
 #  -Pick a city to attack from- #
-#  -Player's City
-#  -Player's City 2 etc
+#  -Player's City -- (Health)
+#  -Player's City 2 etc -- (Health)
 #################################
 Input:
 (If city not found repeat and state error above menu)
 
 ###########Attack Menu###########
 #    -Pick a city to attack-    #
-#  -Adjacent City 1
-#  -Adjacent City 2 etc
+#  -Adjacent City 1 -- (Health)
+#  -Adjacent City 2 etc -- (Health)
 #################################
 Input:
 (If city not found repeat and state error above menu)
