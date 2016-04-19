@@ -49,7 +49,7 @@ Fortify Menu
 #  -Player's City 2 etc -- (Health) -- (Resources)
 #  -Back (Back)                                   #
 ###################################################
-Input:
+Input City Name:
 (If city not found repeat and state error above menu)
 
 Attack Menu
@@ -60,7 +60,7 @@ Attack Menu
 #  -Player's City 2 etc -- (Health) -- (Resources)
 #  -Back (Back)                                   #
 ###################################################
-Input:
+Input City Name:
 (If city not found repeat and state error above menu)
 
 ####################Attack Menu####################
@@ -69,5 +69,5 @@ Input:
 #  -Adjacent City 2 etc -- (Health) -- (Resources)
 #  -Back (Back)                                   #
 ###################################################
-Input:
+Input City Name:
 (If city not found repeat and state error above menu)
