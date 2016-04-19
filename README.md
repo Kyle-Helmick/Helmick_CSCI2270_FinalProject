@@ -12,54 +12,56 @@ By April 27th have completely working game. On April 25th we will decide if we w
 
 Menu ideas.
 
-##########Main Menu##########
+#####################Main Menu#####################
+#      - Pick and option to start, or quit! -     #
 #  -Play Game (Y)
 #  -Quit Game (N)
-#############################
+###################################################
 Input: 
 (If menu key not in menu repeat and state error above menu)
 
 Showing adjacent cities
 
-Player's City -- (Health)
-    Adjacent Enemy -- (Health)
-    Adjacent Enemy 2 etc -- (Health)
-Player's City 2 -- (Health)
-    Adjacent Enemy -- (Health)
-    Adjacent Enemy 2 etc -- (Health)
-#########Action Menu#########
+Player's City -- (Health) -- (Resources)
+    Adjacent Enemy -- (Health) -- (Resources)
+    Adjacent Enemy 2 etc -- (Health) -- (Resources)
+Player's City 2 -- (Health) -- (Resources)
+    Adjacent Enemy -- (Health) -- (Resources)
+    Adjacent Enemy 2 etc -- (Health) -- (Resources)
+####################Action Menu####################
+#         - Pick an action for your turn -        #
 #  -Attack (A)
 #  -Fortify (F)
 #  -Wait (W)
-#############################
+###################################################
 Input: 
 (If action key not in menu repeat and state error above menu)
 (If not enough resources repeat and state error above menu)
 
 Fortify Menu
 
-#########Fortify Menu#########
-#  -Pick a city to fortify-  #
-#  -Player's City -- (Health)
-#  -Player's City 2 etc -- (Health)
-##############################
+####################Fortfify Menu##################
+#             -Pick a city to fortify-            #
+#  -Player's City -- (Health) -- (Resources)
+#  -Player's City 2 etc -- (Health) -- (Resources)
+###################################################
 Input:
 (If city not found repeat and state error above menu)
 
 Attack Menu
 
-###########Attack Menu###########
-#  -Pick a city to attack from- #
-#  -Player's City -- (Health)
-#  -Player's City 2 etc -- (Health)
-#################################
+####################Attack Menu####################
+#           -Pick a city to attack from-          #
+#  -Player's City -- (Health) -- (Resources)
+#  -Player's City 2 etc -- (Health) -- (Resources)
+###################################################
 Input:
 (If city not found repeat and state error above menu)
 
-###########Attack Menu###########
-#    -Pick a city to attack-    #
-#  -Adjacent City 1 -- (Health)
-#  -Adjacent City 2 etc -- (Health)
-#################################
+####################Attack Menu####################
+#             -Pick a city to attack-             #
+#  -Adjacent City 1 -- (Health) -- (Resources)
+#  -Adjacent City 2 etc -- (Health) -- (Resources)
+###################################################
 Input:
 (If city not found repeat and state error above menu)
