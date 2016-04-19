@@ -5,7 +5,59 @@ The game is comprised of multiple cities including the one that you are in charg
 
 By April 21st have interaction between graph nodes, have resource generation working.
 By April 23rd have resource management (resource movement between nodes (just a teleport so we dont have to do shortest path...)), have weights for increasing attack or defense figured out and ability to use resources to raise either.
-By April 25th have algorithm to attack adjacent cities and take control be able to play game completely, also implement breadth search for end game check (all cities are controlled by player)
+By April 25th have algorithm to attack adjacent cities and take control, be able to play game completely, implement breadth search for end game check (all cities are controlled by player), try to create ability for enemy cities to attack eachother/you (random value based on connections to pick which adjacent city, random value on either attack or fortify or neither)
 By April 27th have completely working game. On April 25th we will decide if we want to add saving capabilites.
 
 Menu ideas.
+
+##########Main Menu##########
+#  -Play Game (Y)
+#  -Quit Game (N)
+#############################
+Input: 
+(If menu key not in menu repeat and state error above menu)
+
+Showing adjacent cities
+
+Player's City
+    Adjacent Enemy -- (Health)
+    (etc) -- (Health)
+Player's Second City (etc)
+    Adjacent Enemy -- (Health)
+    (etc) -- (Health
+#########Action Menu#########
+#  -Attack (A)
+#  -Fortify (F)
+#  -Wait (W)
+#############################
+Input: 
+(If action key not in menu repeat and state error above menu)
+(If not enough resources repeat and state error above menu)
+
+Fortify Menu
+
+#########Fortify Menu#########
+#  -Pick a city to fortify-  #
+#  -Player's City
+#  -Player's City 2 etc
+##############################
+Input:
+(If city not found repeat and state error above menu)
+
+Attack Menu
+
+###########Attack Menu###########
+#  -Pick a city to attack from- #
+#  -Player's City
+#  -Player's City 2 etc
+#################################
+Input:
+(If city not found repeat and state error above menu)
+
+###########Attack Menu###########
+#    -Pick a city to attack-    #
+#  -Adjacent City 1
+#  -Adjacent City 2 etc
+#################################
+Input:
+(If city not found repeat and state error above menu)
