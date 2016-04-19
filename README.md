@@ -21,10 +21,10 @@ Input:
 
 Showing adjacent cities
 
-Player's City
+Player's City -- (Health)
     Adjacent Enemy -- (Health)
     Adjacent Enemy 2 etc -- (Health)
-Player's Second City (etc)
+Player's City 2 -- (Health)
     Adjacent Enemy -- (Health)
     Adjacent Enemy 2 etc -- (Health)
 #########Action Menu#########
