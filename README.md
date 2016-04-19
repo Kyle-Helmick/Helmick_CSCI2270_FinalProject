@@ -12,6 +12,8 @@ By April 27th have completely working game. On April 25th we will decide if we w
 
 Menu ideas.
 
+Player CANNOT name city "Back"
+
 #####################Main Menu#####################
 #      - Pick and option to start, or quit! -     #
 #  -Play Game (Y)
@@ -33,6 +35,7 @@ Player's City 2 -- (Health) -- (Resources)
 #  -Attack (A)
 #  -Fortify (F)
 #  -Wait (W)
+#  -Back (Back)                                   #
 ###################################################
 Input: 
 (If action key not in menu repeat and state error above menu)
@@ -44,6 +47,7 @@ Fortify Menu
 #             -Pick a city to fortify-            #
 #  -Player's City -- (Health) -- (Resources)
 #  -Player's City 2 etc -- (Health) -- (Resources)
+#  -Back (Back)                                   #
 ###################################################
 Input:
 (If city not found repeat and state error above menu)
@@ -54,6 +58,7 @@ Attack Menu
 #           -Pick a city to attack from-          #
 #  -Player's City -- (Health) -- (Resources)
 #  -Player's City 2 etc -- (Health) -- (Resources)
+#  -Back (Back)                                   #
 ###################################################
 Input:
 (If city not found repeat and state error above menu)
@@ -62,6 +67,7 @@ Input:
 #             -Pick a city to attack-             #
 #  -Adjacent City 1 -- (Health) -- (Resources)
 #  -Adjacent City 2 etc -- (Health) -- (Resources)
+#  -Back (Back)                                   #
 ###################################################
 Input:
 (If city not found repeat and state error above menu)
