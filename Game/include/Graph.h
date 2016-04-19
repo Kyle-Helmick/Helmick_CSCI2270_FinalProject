@@ -32,7 +32,7 @@ class Graph
         void addEdge();
         void addVertex(string cityname);
         void print();
-        virtual ~Graph();
+        ~Graph();
     protected:
     private:
         vector<vertex_city> vertices;

@@ -15,7 +15,6 @@ void Graph::addEdge()
         for(int j = 0; j < vertices.size(); j++)
         {
             int randomval = rand()%4;
-            //cout << randomval << endl;
             if(randomval == 1)
             {
                 if(i != j)
@@ -33,6 +32,7 @@ void Graph::addEdge()
                         vertex_adj ov;
                         av.v = &vertices[j];
                         ov.v = &vertices[i];
+                        //cout << "flag" << endl;
                         vertices[i].adj.push_back(av);
                         vertices[j].adj.push_back(ov);
                     }
@@ -40,6 +40,7 @@ void Graph::addEdge()
                 }
             }
         }
+
     }
     for(int i = 0; i < vertices.size(); i++)
     {
@@ -52,27 +53,15 @@ void Graph::addEdge()
             vertices[i].adj.push_back(av);
             vertices[0].adj.push_back(ov);
         }
+        //cout << "flag 2" << endl;
     }
 }
 
 void Graph::addVertex(string city_name)
 {
-    bool found = false;
-    for(int i = 0; i < vertices.size(); i++)
-    {
-        if(vertices[i].name == city_name)
-        {
-            found = true;
-            cout<<vertices[i].name<<" found."<<endl;
-        }
-    }
-    if(found == false)
-    {
-        vertex_city v;
-        v.name = city_name;
-        vertices.push_back(v);
-
-    }
+    vertex_city v;
+    v.name = city_name;
+    vertices.push_back(v);
 }
 
 void Graph::print()
@@ -88,7 +77,7 @@ void Graph::print()
                 cout << "\t" << vertices[i].adj[j].v->name << endl;
             }
         }
-        if(vertices[i].p_controlled != true)
+        if(vertices[i].p_controlled == false)
         {
             cout << vertices[i].name << endl;
             for(int j = 0; j < vertices[i].adj.size(); j++)
@@ -96,7 +85,6 @@ void Graph::print()
                 cout << "\t" << vertices[i].adj[j].v->name << endl;
             }
         }
-
     }
 }
 

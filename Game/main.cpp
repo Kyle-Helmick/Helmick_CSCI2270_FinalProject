@@ -37,13 +37,10 @@ int main()
         cin >> cities;
         cities_a = atoi(cities.c_str());
     }
-
     cout << "Ready!" << endl;
-    //cout << user_name << endl;
 
     vector <string> city_names;
     city_names.push_back(user_name);
-
     for(int i = 0; i < cities_a; i++)
     {
         char ins = 'A' + i;

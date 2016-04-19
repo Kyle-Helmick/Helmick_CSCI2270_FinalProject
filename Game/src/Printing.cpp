@@ -14,7 +14,7 @@ void Printing::TextPrint(string message)
     for(int i = 0; i < message.size(); i++)
     {
         cout << message[i];
-        timer.wait(0);
+        timer.wait(.1);
         fflush(stdout);
     }
 }
