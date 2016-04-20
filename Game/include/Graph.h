@@ -18,6 +18,7 @@ struct vertex_city
 {
     string name;
     bool p_controlled = false;
+    bool visited = false;
     int resources = 0;
     vector <vertex_adj> adj;
     int attack = 10;

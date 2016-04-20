@@ -71,18 +71,10 @@ void Graph::print()
     {
         if(vertices[i].p_controlled == true)
         {
-            cout << vertices[i].name << endl;
+            cout << vertices[i].name << " -- " << "Health: " << vertices[i].health << " -- " << "Resources: " << vertices[i].resources << endl;
             for(int j = 0; j < vertices[i].adj.size(); j++)
             {
-                cout << "\t" << vertices[i].adj[j].v->name << endl;
-            }
-        }
-        if(vertices[i].p_controlled == false)
-        {
-            cout << vertices[i].name << endl;
-            for(int j = 0; j < vertices[i].adj.size(); j++)
-            {
-                cout << "\t" << vertices[i].adj[j].v->name << endl;
+                cout << "\t" << vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << endl;
             }
         }
     }

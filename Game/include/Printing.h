@@ -10,6 +10,13 @@ class Printing
     public:
         Printing();
         void TextPrint(string message);
+        void NewPage();
+        void MainMenu();
+        void ActionMenu();
+        void FortifyMenu_B();
+        void AttackMenu_1_B();
+        void AttackMenu_2_B();
+        void MenuEnd();
         virtual ~Printing();
     protected:
     private:
