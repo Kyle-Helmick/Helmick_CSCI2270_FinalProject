@@ -32,7 +32,11 @@ class Graph
         Graph();
         void addEdge();
         void addVertex(string cityname);
+        bool findecity(string city_name);
+        bool findpcity(string city_name);
         void print();
+        void print_p();
+        void print_p_adj(string name);
         ~Graph();
     protected:
     private:

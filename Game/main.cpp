@@ -14,13 +14,17 @@ int main()
     Printing printing;
     Graph graph;
 
-    string user_name,mm,cities,action_menu;
+    string user_name,mm,cities,action_menu,att_ch1,att_ch2,def_ch,res_ch1,res_ch2;
     int main_menu = 1,cities_a;
     vector <string> city_names;
     bool play = true;
 
     printing.NewPage();
+    printing.Title();
+    timer.wait(1);
+    cout << endl << endl;
     printing.MainMenu();
+    cout << "Input: ";
     getline(cin, mm);
 
     while(main_menu != -1)
@@ -52,6 +56,7 @@ int main()
             printing.NewPage();
             cout << "ERROR: Please input either P or Q!" << endl;
             printing.MainMenu();
+            cout << "Input: ";
             getline(cin, mm);
         }
     }
@@ -86,31 +91,249 @@ int main()
             graph.addVertex(city_names[i]);
         }
         graph.addEdge();
-        graph.print();
 
+        bool error = false;
         while (play = true)
         {
+            if(error = true)
+            {
+                cout << "ERROR: Please enter a valid choice" << endl;
+            }
+            bool turn_completed = false;
+            error = false;
+            printing.NewPage();
+            graph.print();
             printing.ActionMenu();
+            cout << "Input: ";
             getline(cin, action_menu);
             if(action_menu == "A")
             {
-
+                error = false;
+                bool attack_menu_back = false;
+                bool attack_menu_back_2 = false;
+                while(attack_menu_back == false)
+                {
+                    if(turn_completed == true)
+                    {
+                        break;
+                    }
+                    printing.NewPage();
+                    if(error == true)
+                    {
+                        cout << "ERROR: Please enter a valid city name." << endl;
+                    }
+                    error = false;
+                    printing.AttackMenu_1_B();
+                    graph.print_p();
+                    printing.MenuEnd();
+                    cout << "Input City Name: ";
+                    getline(cin, att_ch1);
+                    if(att_ch1 == "Back")
+                    {
+                        attack_menu_back = true;
+                        break;
+                    }
+                    if(att_ch1 != "Back")
+                    {
+                        if(graph.findpcity(att_ch1) == true)
+                        {
+                            while(attack_menu_back_2 == false)
+                            {
+                                printing.NewPage();
+                                if(error == true)
+                                {
+                                    cout << "ERROR: Please enter a valid city name." << endl;
+                                    error = false;
+                                }
+                                printing.AttackMenu_2_B();
+                                graph.print_p_adj(att_ch1);
+                                printing.MenuEnd();
+                                cout << "Input City Name: ";
+                                getline(cin, att_ch2);
+                                if(att_ch2 == "Back")
+                                {
+                                    attack_menu_back_2 == true;
+                                    break;
+                                }
+                                if(att_ch2 != "Back")
+                                {
+                                    if(graph.findecity(att_ch2) == true)
+                                    {
+                                        //attack function in here
+                                        turn_completed = true;
+                                        break;
+                                    }
+                                    if(graph.findecity(att_ch2) == false)
+                                    {
+                                        error = true;
+                                    }
+                                }
+                            }
+                        }
+                        if(graph.findpcity(att_ch1) == false)
+                        {
+                            error = true;
+                        }
+                    }
+                }
+                if(attack_menu_back == true)
+                {
+                    turn_completed == false;
+                }
             }
             else if(action_menu == "F")
             {
-
+                error = false;
+                bool fortify_menu_back = false;
+                while(fortify_menu_back == false)
+                {
+                    if(turn_completed == true)
+                    {
+                        break;
+                    }
+                    printing.NewPage();
+                    if(error == true)
+                    {
+                        cout << "ERROR: Please enter a valid city name." << endl;
+                        error = false;
+                    }
+                    printing.FortifyMenu_B();
+                    graph.print_p();
+                    printing.MenuEnd();
+                    cout << "Input City Name: ";
+                    getline(cin, def_ch);
+                    if(def_ch == "Back")
+                    {
+                        fortify_menu_back = true;
+                        break;
+                    }
+                    if(def_ch != "Back")
+                    {
+                        if(graph.findpcity(def_ch) == true)
+                        {
+                            //fortify function here
+                            turn_completed = true;
+                            break;
+                        }
+                        if(graph.findpcity(def_ch) == false)
+                        {
+                            error = true;
+                        }
+                    }
+                }
             }
             else if(action_menu == "W")
             {
-
+                //add resources from wait here
+                turn_completed = true;
             }
-            else if((action_menu == "Back") || (action_menu == "back"))
+            else if(action_menu == "R")
             {
+                error = false;
+                bool resource_menu_back = false;
+                bool resource_menu_back_2 = false;
+                bool same_city = false;
+                while(resource_menu_back == false)
+                {
+                    if(turn_completed == true)
+                    {
+                        break;
+                    }
+                    printing.NewPage();
+                    if(error == true)
+                    {
+                        cout << "ERROR: Please enter a valid city name." << endl;
+                    }
+                    error = false;
+                    printing.ResourcesMenu_1_B();
+                    graph.print_p();
+                    printing.MenuEnd();
+                    cout << "Input City Name: ";
+                    getline(cin, res_ch1);
+                    if(res_ch1 == "Back")
+                    {
+                        resource_menu_back = true;
+                        break;
+                    }
+                    if(res_ch1 != "Back")
+                    {
+                        if(graph.findpcity(res_ch1) == true)
+                        {
+                            while(resource_menu_back_2 == false)
+                            {
+                                if(same_city != true)
+                                {
+                                    printing.NewPage();
+                                }
+                                same_city = false;
+                                if(error == true)
+                                {
+                                    cout << "ERROR: Please enter a valid city name." << endl;
+                                    error = false;
+                                }
+                                printing.ResourcesMenu_2_B();
+                                graph.print_p();
+                                printing.MenuEnd();
+                                cout << "Input City Name: ";
+                                getline(cin, res_ch2);
+                                if(res_ch2 == res_ch1)
+                                {
+                                    printing.NewPage();
+                                    cout << "ERROR: You cannot choose the same city." << endl;
+                                    same_city = true;
+                                }
+                                else if(res_ch2 == "Back")
+                                {
+                                    resource_menu_back_2 == true;
+                                    break;
+                                }
+                                else if((res_ch2 != "Back") && (res_ch2 != res_ch1))
+                                {
+                                    if(graph.findpcity(res_ch2) == true)
+                                    {
+                                        //move resources function in here
+                                        turn_completed = true;
+                                        break;
+                                    }
+                                    if(graph.findpcity(res_ch2) == false)
+                                    {
+                                        error = true;
+                                    }
+                                }
+                            }
+                        }
+                        if(graph.findpcity(res_ch1) == false)
+                        {
+                            error = true;
+                        }
+                    }
+                }
+                if(resource_menu_back == true)
+                {
+                    turn_completed == false;
+                }
+            }
+            else if(action_menu == "Exit")
+            {
+                string exit_choice;
+                cout << "Are you sure? (Y/N): ";
+                getline(cin, exit_choice);
+                if(exit_choice == "Y")
+                {
+                    break;
+                }
+                if(exit_choice == "N")
+                {
 
+                }
             }
             else
             {
-
+                error = true;
+            }
+            if(turn_completed == true)
+            {
+                //give resources to all players
             }
 
         }

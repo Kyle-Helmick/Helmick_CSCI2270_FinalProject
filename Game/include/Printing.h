@@ -16,7 +16,10 @@ class Printing
         void FortifyMenu_B();
         void AttackMenu_1_B();
         void AttackMenu_2_B();
+        void ResourcesMenu_1_B();
+        void ResourcesMenu_2_B();
         void MenuEnd();
+        void Title();
         virtual ~Printing();
     protected:
     private:

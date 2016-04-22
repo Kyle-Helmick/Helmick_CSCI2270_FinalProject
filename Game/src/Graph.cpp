@@ -64,6 +64,30 @@ void Graph::addVertex(string city_name)
     vertices.push_back(v);
 }
 
+bool Graph::findecity(string city_name)
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if((vertices[i].name == city_name) && (vertices[i].p_controlled == false))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Graph::findpcity(string city_name)
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if((vertices[i].name == city_name) && (vertices[i].p_controlled == true))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 void Graph::print()
 {
     vertices[0].p_controlled = true;
@@ -77,6 +101,37 @@ void Graph::print()
                 cout << "\t" << vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << endl;
             }
         }
+    }
+}
+
+void Graph::print_p()
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if(vertices[i].p_controlled == true)
+        {
+            cout << vertices[i].name << " -- " << "Health: " << vertices[i].health << " -- " << "Resources: " << vertices[i].resources << endl;
+        }
+    }
+}
+
+void Graph::print_p_adj(string name)
+{
+    bool found = false;
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if(name == vertices[i].name)
+        {
+            found = true;
+            for(int j = 0; j < vertices[i].adj.size(); j++)
+            {
+                cout << "#  -"<< vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << endl;
+            }
+        }
+    }
+    if(found == false)
+    {
+        cout << "ERROR: City not found, use exact case." << endl;
     }
 }
 

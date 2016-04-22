@@ -32,19 +32,18 @@ void Printing::MainMenu()
     cout << "#  -Play Game (P)                                  " << endl;
     cout << "#  -Quit Game (Q)                                 #" << endl;
     cout << "###################################################" << endl;
-    cout << "Input: ";
 }
 
 void Printing::ActionMenu()
 {
     cout << "####################Action Menu####################" << endl;
     cout << "#         - Pick an action for your turn -        #" << endl;
-    cout << "#  -Attack (A)" << endl;
-    cout << "#  -Fortify (F)" << endl;
-    cout << "#  -Wait (W)" << endl;
-    cout << "#  -Back (Back)                                   #" << endl;
+    cout << "#  -Attack (A) -- -5 Resources" << endl;
+    cout << "#  -Fortify (F) -- -3 Resources" << endl;
+    cout << "#  -Wait (W) -- +5 Resources" << endl;
+    cout << "#  -Manage Resources (R)" << endl;
+    cout << "#  -Exit (Exit)                                   #" << endl;
     cout << "###################################################" << endl;
-    cout << "Input: ";
 }
 
 void Printing::FortifyMenu_B()
@@ -65,11 +64,31 @@ void Printing::AttackMenu_2_B()
     cout << "#             -Pick a city to attack-             #" << endl;
 }
 
+void Printing::ResourcesMenu_1_B()
+{
+    cout << "###################Resources Menu##################" << endl;
+    cout << "#       -Pick a city to move resources from-      #" << endl;
+}
+
+void Printing::ResourcesMenu_2_B()
+{
+    cout << "###################Resources Menu##################" << endl;
+    cout << "#        -Pick a city to move resources to-       #" << endl;
+}
+
 void Printing::MenuEnd()
 {
     cout << "#  -Back (Back)                                   #" << endl;
     cout << "###################################################" << endl;
-    cout << "Input City Name: ";
+}
+
+void Printing::Title()
+{
+    cout << "#####    ######   #####   #####" << endl;
+    cout << "##  ##     ##    ##      ##    " << endl;
+    cout << "#####      ##    #####   ##    " << endl;
+    cout << "##  ##     ##        ##  ##    " << endl;
+    cout << "##   ##  ######  #####    #####" << endl;
 }
 
 Printing::~Printing()
