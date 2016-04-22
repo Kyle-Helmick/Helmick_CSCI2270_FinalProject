@@ -1,7 +1,6 @@
 #include <iostream>
 #include <stdio.h>
 #include <cstdlib>
-#include "Timer.h"
 #include "Printing.h"
 #include "Graph.h"
 #include <vector>
@@ -10,12 +9,11 @@ using namespace std;
 
 int main()
 {
-    Timer timer;
     Printing printing;
     Graph graph;
 
-    string user_name,mm,cities,action_menu,att_ch1,att_ch2,def_ch,res_ch1,res_ch2;
-    int main_menu = 1,cities_a;
+    string user_name,mm,cities,action_menu,att_ch1,att_ch2,def_ch,res_ch1,res_ch2,res_amount;
+    int main_menu = 1,cities_a,res_move;
     vector <string> city_names;
     bool play = true;
 
@@ -31,7 +29,7 @@ int main()
     {
         if(mm == "P")
         {
-            string name_m = "Please input your cities name: ";
+            string name_m = "Please input your city's name: ";
             printing.TextPrint(name_m);
             getline(cin, user_name);
             if((user_name == "Back") || (user_name == "back"))
@@ -83,7 +81,7 @@ int main()
         {
             char ins = 'A' + i;
             string ins2 = string(1, ins);
-            string ins3 = "City: " + ins2;
+            string ins3 = ins2;
             city_names.push_back(ins3);
         }
         for(int i = 0; i < city_names.size(); i++)
@@ -95,13 +93,13 @@ int main()
         bool error = false;
         while (play = true)
         {
-            if(error = true)
+            printing.NewPage();
+            if(error == true)
             {
                 cout << "ERROR: Please enter a valid choice" << endl;
             }
             bool turn_completed = false;
             error = false;
-            printing.NewPage();
             graph.print();
             printing.ActionMenu();
             cout << "Input: ";
@@ -159,7 +157,7 @@ int main()
                                 {
                                     if(graph.findecity(att_ch2) == true)
                                     {
-                                        //attack function in here
+                                        graph.attack(att_ch1, att_ch2);
                                         turn_completed = true;
                                         break;
                                     }
@@ -211,7 +209,7 @@ int main()
                     {
                         if(graph.findpcity(def_ch) == true)
                         {
-                            //fortify function here
+                            graph.fortify(def_ch);
                             turn_completed = true;
                             break;
                         }
@@ -224,7 +222,7 @@ int main()
             }
             else if(action_menu == "W")
             {
-                //add resources from wait here
+                graph.wait();
                 turn_completed = true;
             }
             else if(action_menu == "R")
@@ -250,6 +248,9 @@ int main()
                     printing.MenuEnd();
                     cout << "Input City Name: ";
                     getline(cin, res_ch1);
+                    cout << "Input Amount to move: ";
+                    getline(cin, res_amount);
+                    res_move = atoi(res_amount.c_str());
                     if(res_ch1 == "Back")
                     {
                         resource_menu_back = true;
@@ -291,7 +292,7 @@ int main()
                                 {
                                     if(graph.findpcity(res_ch2) == true)
                                     {
-                                        //move resources function in here
+                                        graph.resources(res_ch1,res_ch2, res_move);
                                         turn_completed = true;
                                         break;
                                     }
@@ -333,9 +334,9 @@ int main()
             }
             if(turn_completed == true)
             {
-                //give resources to all players
+                graph.turnresources();
             }
-
+            //insert AI function
         }
     }
 }

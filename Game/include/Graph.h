@@ -19,10 +19,10 @@ struct vertex_city
     string name;
     bool p_controlled = false;
     bool visited = false;
-    int resources = 0;
+    int resources = 10;
     vector <vertex_adj> adj;
-    int attack = 10;
-    int def = 10;
+    int attack = 20;
+    int def = 20;
     int health = 100;
 };
 
@@ -37,6 +37,12 @@ class Graph
         void print();
         void print_p();
         void print_p_adj(string name);
+        void attack(string attack, string def);
+        void fortify(string city);
+        void resources(string from, string to, int amount);
+        void wait();
+        void turnresources();
+        void Aiturns();
         ~Graph();
     protected:
     private:

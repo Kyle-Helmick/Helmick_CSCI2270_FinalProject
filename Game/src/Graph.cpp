@@ -98,7 +98,7 @@ void Graph::print()
             cout << vertices[i].name << " -- " << "Health: " << vertices[i].health << " -- " << "Resources: " << vertices[i].resources << endl;
             for(int j = 0; j < vertices[i].adj.size(); j++)
             {
-                cout << "\t" << vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << endl;
+                cout << "\t" << "City: "<< vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << endl;
             }
         }
     }
@@ -110,7 +110,7 @@ void Graph::print_p()
     {
         if(vertices[i].p_controlled == true)
         {
-            cout << vertices[i].name << " -- " << "Health: " << vertices[i].health << " -- " << "Resources: " << vertices[i].resources << endl;
+            cout << "#  -" << vertices[i].name << " -- " << "Health: " << vertices[i].health << " -- " << "Resources: " << vertices[i].resources << endl;
         }
     }
 }
@@ -125,13 +125,100 @@ void Graph::print_p_adj(string name)
             found = true;
             for(int j = 0; j < vertices[i].adj.size(); j++)
             {
-                cout << "#  -"<< vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << endl;
+                cout << "#  -City: " << vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << endl;
             }
         }
     }
     if(found == false)
     {
         cout << "ERROR: City not found, use exact case." << endl;
+    }
+}
+
+void Graph::attack(string attack, string def)
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if(vertices[i].name == attack)
+        {
+            for(int j = 0; i < vertices[i].adj.size(); j++)
+            {
+                if(vertices[i].adj[j].v->name == def)
+                {
+                    int damage = 2*(vertices[i].attack - .25*(vertices[i].adj[j].v->def));
+                    if(damage < 0)
+                    {
+                        damage = damage*-1;
+                    }
+                    vertices[i].adj[j].v->health -= damage;
+                    vertices[i].resources -= 5;
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void Graph::fortify(string city)
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if(vertices[i].name == city)
+        {
+            vertices[i].def += 5;
+            vertices[i].resources -= 3;
+            break;
+        }
+    }
+
+}
+
+void Graph::resources(string from, string to, int amount)
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if(vertices[i].name == from)
+        {
+            for(int j = 0; i < vertices[i].adj.size(); j++)
+            {
+                if(vertices[i].adj[j].v->name == to)
+                {
+                    bool good = true;
+                    while(good == true)
+                    {
+                        if(amount > vertices[i].resources)
+                        {
+
+                        }
+                        if(amount =< vertices[i].resources)
+                        {
+                            vertices[i].resources -= amount;
+                            vertices[i].adj[j].v->resources += amount;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void Graph::wait()
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if(vertices[i].p_controlled == true)
+        {
+            vertices[i].resources += 5;
+        }
+    }
+}
+
+void Graph::turnresources()
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        vertices[i].resources += 5;
     }
 }
 

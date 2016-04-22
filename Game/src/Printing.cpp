@@ -62,6 +62,7 @@ void Printing::AttackMenu_2_B()
 {
     cout << "####################Attack Menu####################" << endl;
     cout << "#             -Pick a city to attack-             #" << endl;
+    cout << "#               -(Just the letter)-               #" << endl;
 }
 
 void Printing::ResourcesMenu_1_B()
@@ -84,11 +85,12 @@ void Printing::MenuEnd()
 
 void Printing::Title()
 {
-    cout << "#####    ######   #####   #####" << endl;
-    cout << "##  ##     ##    ##      ##    " << endl;
-    cout << "#####      ##    #####   ##    " << endl;
-    cout << "##  ##     ##        ##  ##    " << endl;
-    cout << "##   ##  ######  #####    #####" << endl;
+    cout << "██████╗ ██╗███████╗ ██████╗" << endl;
+    cout << "██╔══██╗██║██╔════╝██╔════╝" << endl;
+    cout << "██████╔╝██║███████╗██║     " << endl;
+    cout << "██╔══██╗██║╚════██║██║     " << endl;
+    cout << "██║  ██║██║███████║╚██████╗" << endl;
+    cout << "╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝" << endl;
 }
 
 Printing::~Printing()
