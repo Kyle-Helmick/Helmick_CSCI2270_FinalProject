@@ -21,10 +21,11 @@ struct vertex_city
     bool visited = false;
     int resources = 10;
     vector <vertex_adj> adj;
-    int attack = 20;
-    int def = 20;
+    int attack;
+    int def;
     int health = 100;
     int ID;
+    int aggression;
 };
 
 class Graph
