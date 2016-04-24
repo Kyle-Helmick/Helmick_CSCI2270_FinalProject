@@ -1,15 +1,27 @@
 #ifndef PRINTING_H
 #define PRINTING_H
 #include <iostream>
-
+#include <vector>
 
 using namespace std;
+
+struct menu_node;
+
+struct menu_node_adj
+{
+    menu_node *m;
+};
+
+struct menu_node
+{
+    menu_node *parent;
+    vector <menu_node> children;
+};
 
 class Printing
 {
     public:
         Printing();
-        void TextPrint(string message);
         void NewPage();
         void MainMenu();
         void ActionMenu();

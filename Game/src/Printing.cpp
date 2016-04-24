@@ -1,5 +1,4 @@
 #include "Printing.h"
-#include "Timer.h"
 #include "Graph.h"
 #include <iostream>
 #include <stdio.h>
@@ -7,17 +6,6 @@
 Printing::Printing()
 {
 
-}
-
-void Printing::TextPrint(string message)
-{
-    Timer timer;
-    for(int i = 0; i < message.size(); i++)
-    {
-        cout << message[i];
-        timer.wait(.01);
-        fflush(stdout);
-    }
 }
 
 void Printing::NewPage()

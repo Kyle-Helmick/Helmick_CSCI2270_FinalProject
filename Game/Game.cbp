@@ -36,11 +36,9 @@
 		</Compiler>
 		<Unit filename="include/Graph.h" />
 		<Unit filename="include/Printing.h" />
-		<Unit filename="include/Timer.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Graph.cpp" />
 		<Unit filename="src/Printing.cpp" />
-		<Unit filename="src/Timer.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

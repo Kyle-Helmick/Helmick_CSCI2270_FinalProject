@@ -40,8 +40,10 @@ class Graph
         void attack(string attack, string def);
         void fortify(string city);
         void resources(string from, string to, int amount);
-        void wait();
+        void pwait();
+        void ewait(string city);
         void turnresources();
+        bool resourcecheck(string city, int amount);
         void Aiturns();
         ~Graph();
     protected:

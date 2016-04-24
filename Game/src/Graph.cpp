@@ -179,23 +179,12 @@ void Graph::resources(string from, string to, int amount)
     {
         if(vertices[i].name == from)
         {
-            for(int j = 0; i < vertices[i].adj.size(); j++)
+            for(int j = 0; j < vertices.size(); j++)
             {
-                if(vertices[i].adj[j].v->name == to)
+                if(vertices[j].name == to)
                 {
-                    bool good = true;
-                    while(good == true)
-                    {
-                        if(amount > vertices[i].resources)
-                        {
-
-                        }
-                        if(amount =< vertices[i].resources)
-                        {
-                            vertices[i].resources -= amount;
-                            vertices[i].adj[j].v->resources += amount;
-                        }
-                    }
+                    vertices[i].resources -= amount;
+                    vertices[j].resources += amount;
                     break;
                 }
             }
@@ -203,11 +192,22 @@ void Graph::resources(string from, string to, int amount)
     }
 }
 
-void Graph::wait()
+void Graph::pwait()
 {
     for(int i = 0; i < vertices.size(); i++)
     {
         if(vertices[i].p_controlled == true)
+        {
+            vertices[i].resources += 5;
+        }
+    }
+}
+
+void Graph::ewait(string city)
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if(vertices[i].name == city)
         {
             vertices[i].resources += 5;
         }
@@ -220,6 +220,26 @@ void Graph::turnresources()
     {
         vertices[i].resources += 5;
     }
+}
+
+bool Graph::resourcecheck(string city, int amount)
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if(vertices[i].name == city)
+        {
+            if(vertices[i].resources >= amount)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+void Graph::Aiturns()
+{
+
 }
 
 Graph::~Graph()
