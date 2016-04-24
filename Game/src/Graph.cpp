@@ -10,8 +10,11 @@ void Graph::addEdge()
 {
     srand(time(NULL));
     bool found = false;
+    vertices[0].p_controlled = true;
     for(int i = 0; i < vertices.size(); i++)
     {
+        vertices[i].ID = i;
+        cout << "I: " << i << endl;
         for(int j = 0; j < vertices.size(); j++)
         {
             int randomval = rand()%4;
@@ -90,7 +93,6 @@ bool Graph::findpcity(string city_name)
 
 void Graph::print()
 {
-    vertices[0].p_controlled = true;
     for(int i = 0; i < vertices.size(); i++)
     {
         if(vertices[i].p_controlled == true)
@@ -110,7 +112,7 @@ void Graph::print_p()
     {
         if(vertices[i].p_controlled == true)
         {
-            cout << "#  -" << vertices[i].name << " -- " << "Health: " << vertices[i].health << " -- " << "Resources: " << vertices[i].resources << endl;
+            cout << "║  -" << vertices[i].name << " -- " << "Health: " << vertices[i].health << " -- " << "Resources: " << vertices[i].resources << endl;
         }
     }
 }
@@ -125,7 +127,7 @@ void Graph::print_p_adj(string name)
             found = true;
             for(int j = 0; j < vertices[i].adj.size(); j++)
             {
-                cout << "#  -City: " << vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << endl;
+                cout << "║  -City: " << vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << endl;
             }
         }
     }

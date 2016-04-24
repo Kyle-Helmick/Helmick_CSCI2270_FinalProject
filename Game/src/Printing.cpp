@@ -15,60 +15,60 @@ void Printing::NewPage()
 
 void Printing::MainMenu()
 {
-    cout << "#####################Main Menu#####################" << endl;
-    cout << "#      - Pick and option to start, or quit! -     #" << endl;
-    cout << "#  -Play Game (P)                                  " << endl;
-    cout << "#  -Quit Game (Q)                                 #" << endl;
-    cout << "###################################################" << endl;
+    cout << "╔════════════════════Main Menu════════════════════╗" << endl;
+    cout << "║      - Pick and option to start, or quit! -     ║" << endl;
+    cout << "║  -Play Game (P)                                  " << endl;
+    cout << "║  -Quit Game (Q)                                 ║" << endl;
+    cout << "╚═════════════════════════════════════════════════╝" << endl;
 }
 
 void Printing::ActionMenu()
 {
-    cout << "####################Action Menu####################" << endl;
-    cout << "#         - Pick an action for your turn -        #" << endl;
-    cout << "#  -Attack (A) -- -5 Resources" << endl;
-    cout << "#  -Fortify (F) -- -3 Resources" << endl;
-    cout << "#  -Wait (W) -- +5 Resources" << endl;
-    cout << "#  -Manage Resources (R)" << endl;
-    cout << "#  -Exit (Exit)                                   #" << endl;
-    cout << "###################################################" << endl;
+    cout << "╔═══════════════════Action Menu═══════════════════╗" << endl;
+    cout << "║         - Pick an action for your turn -        ║" << endl;
+    cout << "║  -Attack (A) -- -5 Resources" << endl;
+    cout << "║  -Fortify (F) -- -3 Resources" << endl;
+    cout << "║  -Wait (W) -- +5 Resources" << endl;
+    cout << "║  -Manage Resources (R)" << endl;
+    cout << "║  -Exit (Exit)                                   ║" << endl;
+    cout << "╚═════════════════════════════════════════════════╝" << endl;
 }
 
 void Printing::FortifyMenu_B()
 {
-    cout << "####################Fortify Menu###################" << endl;
-    cout << "#             -Pick a city to fortify-            #" << endl;
+    cout << "╔═══════════════════Fortify Menu══════════════════╗" << endl;
+    cout << "║             -Pick a city to fortify-            ║" << endl;
 }
 
 void Printing::AttackMenu_1_B()
 {
-    cout << "####################Attack Menu####################" << endl;
-    cout << "#           -Pick a city to attack from-          #" << endl;
+    cout << "╔═══════════════════Attack Menu═══════════════════╗" << endl;
+    cout << "║           -Pick a city to attack from-          ║" << endl;
 }
 
 void Printing::AttackMenu_2_B()
 {
-    cout << "####################Attack Menu####################" << endl;
-    cout << "#             -Pick a city to attack-             #" << endl;
-    cout << "#               -(Just the letter)-               #" << endl;
+    cout << "╔═══════════════════Attack Menu═══════════════════╗" << endl;
+    cout << "║             -Pick a city to attack-             ║" << endl;
+    cout << "║               -(Just the letter)-               ║" << endl;
 }
 
 void Printing::ResourcesMenu_1_B()
 {
-    cout << "###################Resources Menu##################" << endl;
-    cout << "#       -Pick a city to move resources from-      #" << endl;
+    cout << "╔══════════════════Resources Menu═════════════════╗" << endl;
+    cout << "║       -Pick a city to move resources from-      ║" << endl;
 }
 
 void Printing::ResourcesMenu_2_B()
 {
-    cout << "###################Resources Menu##################" << endl;
-    cout << "#        -Pick a city to move resources to-       #" << endl;
+    cout << "╔══════════════════Resources Menu═════════════════╗" << endl;
+    cout << "║        -Pick a city to move resources to-       ║" << endl;
 }
 
 void Printing::MenuEnd()
 {
-    cout << "#  -Back (Back)                                   #" << endl;
-    cout << "###################################################" << endl;
+    cout << "║  -Back (Back)                                   ║" << endl;
+    cout << "╚═════════════════════════════════════════════════╝" << endl;
 }
 
 void Printing::Title()

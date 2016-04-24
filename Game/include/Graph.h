@@ -24,6 +24,7 @@ struct vertex_city
     int attack = 20;
     int def = 20;
     int health = 100;
+    int ID;
 };
 
 class Graph
