@@ -61,6 +61,9 @@ void Graph::addVertex(string city_name)
 {
     vertex_city v;
     v.name = city_name;
+    v.aggression = rand() % 10 + 15;
+    v.attack = rand() % 10 + 15;
+    v.def = rand() % 10 + 15;
     vertices.push_back(v);
 }
 
@@ -95,10 +98,10 @@ void Graph::print()
     {
         if(vertices[i].p_controlled == true)
         {
-            cout << vertices[i].name << " -- " << "Health: " << vertices[i].health << " -- " << "Resources: " << vertices[i].resources << endl;
+            cout << vertices[i].name << " -- " << "Health: " << vertices[i].health << " -- " << "Resources: " << vertices[i].resources << " -- " << "Defense: " << vertices[i].def << " -- " << "Attack: " << vertices[i].attack << endl;
             for(int j = 0; j < vertices[i].adj.size(); j++)
             {
-                cout << "\t" << "City: "<< vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << endl;
+                cout << "\t" << "City: "<< vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << " -- " << "Defense: " << vertices[i].adj[j].v->def << " -- " << "Attack: " << vertices[i].adj[j].v->attack << endl;
             }
         }
     }
@@ -125,7 +128,7 @@ void Graph::print_p_adj(string name)
             found = true;
             for(int j = 0; j < vertices[i].adj.size(); j++)
             {
-                cout << "#  -City: " << vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << endl;
+                cout << "#  -City: " << vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << " -- " << "Defense: " << vertices[i].adj[j].v->def << endl;
             }
         }
     }
@@ -239,7 +242,9 @@ bool Graph::resourcecheck(string city, int amount)
 
 void Graph::Aiturns()
 {
-
+    //srand(time(NULL));
+    int ai_rand = rand() % 10 + 1;
+    cout<<endl<<endl<<"random number generated for ai: "<< ai_rand<<endl;
 }
 
 Graph::~Graph()
