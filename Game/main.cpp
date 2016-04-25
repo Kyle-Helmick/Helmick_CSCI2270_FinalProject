@@ -100,6 +100,10 @@ int main()
 
         while (playing == true)
         {
+            if(turn_completed != true)
+            {
+                printing.NewPage();
+            }
             turn_completed = false; //these commands set all menu backs to false and starts a new turn
             menu_back_1 = false; //^
             menu_back_2 = false; //^
@@ -386,10 +390,9 @@ int main()
 
             if(turn_completed == true) //if the turn was completed under any action give turn resources to all players and give AI turns
             {
-                graph.turnresources();
                 printing.NewPage();
                 graph.AIturns();
-                //insert AI function
+                graph.turnresources();
             }
             if(graph.win_check() == true)
             {
