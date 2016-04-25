@@ -285,28 +285,39 @@ void Graph::AIturns()
 {
     for(int i = 0; i < vertices.size(); i++)
     {
-        if(vertices[i].p_controlled == true)
-        {
-            //cout << vertices[i].name << " -- " << "Health: " << vertices[i].health << " -- " << "Resources: " << vertices[i].resources << " -- " << "Defense: " << vertices[i].def << " -- " << "Attack: " << vertices[i].attack << endl;
-            for(int j = 0; j < vertices[i].adj.size(); j++)
-            {
-                int ai_dec = genRand();
-                if (ai_dec <= vertices[i].adj[j].v->aggression){
-                    attack(vertices[i].adj[j].v->name, vertices[i].name);
-                    cout<<"City "<<vertices[i].adj[j].v->name<<" attacked "<<vertices[i].name<<"!"<<endl;
-                }
-                if ((ai_dec > vertices[i].adj[j].v->aggression) && (ai_dec<=50)){
-                    fortify(vertices[i].adj[j].v->name);
-                    cout<<"City "<<vertices[i].adj[j].v->name<<" fortified."<<endl;
-                }
-                if (ai_dec > 50){
-                    ewait(vertices[i].adj[j].v->name);
-                    cout<<"City "<<vertices[i].adj[j].v->name<<" waited."<<endl;
+        if (vertices[i].p_controlled == false){
+            int ai_dec = genRand();
+            if ((ai_dec >= vertices[i].aggression) && (ai_dec<=50)){
+                fortify(vertices[i].name);
+                cout<<"City "<<vertices[i].name<<" fortified."<<endl;
+            }
+            if (ai_dec > 50){
+                ewait(vertices[i].name);
+                cout<<"City "<<vertices[i].name<<" waited."<<endl;
+            }
+            if (ai_dec < vertices[i].aggression){
+                int att_dec = genRand2(vertices[i].adj.size());
+                //cout<<endl<<"THIS IS THE OUTPUT OF GENRAND2: "<<att_dec<<endl<<endl;
+                attack(vertices[i].name, vertices[i].adj[att_dec].v->name);
+                bool seecity = false;
+                for (int j=0;j<vertices.size();j++){
+                    if (vertices[j].p_controlled==true){
+                        for (int k=0;k<vertices[j].adj.size();k++){
+                            if (vertices[j].adj[k].v->name==vertices[i].name){
+                                bool seecity = true;
+                                break;
+                            }
+                        }
+                        if (seecity == true)
+                            cout<<"City "<<vertices[i].name<<" attacked city "<<vertices[i].adj[att_dec].v->name<<"!"<<endl;
+                            break;
+                    }
                 }
             }
         }
     }
 }
+
 
 int Graph::genRand(){
     int randnum = rand() % 70 + 1;
@@ -362,6 +373,13 @@ bool Graph::lose_check()
         return false;
     }
 }
+
+int Graph::genRand2(int adjsize){
+    srand(time(NULL));
+    int randnum = rand() % adjsize;
+    return randnum;
+}
+
 Graph::~Graph()
 {
     //dtor

@@ -50,6 +50,7 @@ class Graph
         int genRand();
         bool win_check();
         bool lose_check();
+        int genRand2(int adjsize);
         ~Graph();
     protected:
     private:
