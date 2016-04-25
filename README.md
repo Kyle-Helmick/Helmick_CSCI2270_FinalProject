@@ -1,4 +1,4 @@
-# Helmick_CSCI2270_FinalProject
+# Helmick_Stevenson_CSCI2270_FinalProject
 This repository is where we store our files for our final project.
 
 TO SEE MENU IDEAS VIEW THIS DOCUMENT IN RAW FORM
