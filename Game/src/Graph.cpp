@@ -242,13 +242,37 @@ bool Graph::resourcecheck(string city, int amount)
     return false;
 }
 
-void Graph::Aiturns()
+void Graph::AIturns()
 {
-    //srand(time(NULL));
-    int ai_rand = rand() % 10 + 1;
-    cout<<endl<<endl<<"random number generated for ai: "<< ai_rand<<endl;
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if(vertices[i].p_controlled == true)
+        {
+            //cout << vertices[i].name << " -- " << "Health: " << vertices[i].health << " -- " << "Resources: " << vertices[i].resources << " -- " << "Defense: " << vertices[i].def << " -- " << "Attack: " << vertices[i].attack << endl;
+            for(int j = 0; j < vertices[i].adj.size(); j++)
+            {
+                int ai_dec = genRand();
+                if (ai_dec <= vertices[i].adj[j].v->aggression){
+                    attack(vertices[i].adj[j].v->name, vertices[i].name);
+                    cout<<"City "<<vertices[i].adj[j].v->name<<" attacked "<<vertices[i].name<<"!"<<endl;
+                }
+                if ((ai_dec > vertices[i].adj[j].v->aggression) && (ai_dec<=50)){
+                    fortify(vertices[i].adj[j].v->name);
+                    cout<<"City "<<vertices[i].adj[j].v->name<<" fortified."<<endl;
+                }
+                if (ai_dec > 50){
+                    ewait(vertices[i].adj[j].v->name);
+                    cout<<"City "<<vertices[i].adj[j].v->name<<" waited."<<endl;
+                }
+            }
+        }
+    }
 }
 
+int Graph::genRand(){
+    int randnum = rand() % 70 + 1;
+    return randnum;
+}
 Graph::~Graph()
 {
     //dtor

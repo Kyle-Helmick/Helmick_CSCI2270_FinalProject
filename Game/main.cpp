@@ -104,7 +104,7 @@ int main()
             menu_back_1 = false; //^
             menu_back_2 = false; //^
 
-            printing.NewPage(); //prints a new page
+            //printing.NewPage(); //prints a new page
             if(menu_error == true) //if there is a menu error then print out the error and set the error bool to false
             {
                 cout << "ERROR: Please enter a valid choice" << endl;
@@ -387,6 +387,8 @@ int main()
             if(turn_completed == true) //if the turn was completed under any action give turn resources to all players and give AI turns
             {
                 graph.turnresources();
+                printing.NewPage();
+                graph.AIturns();
                 //insert AI function
             }
         }

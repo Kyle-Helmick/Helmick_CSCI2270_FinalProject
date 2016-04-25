@@ -46,7 +46,8 @@ class Graph
         void ewait(string city);
         void turnresources();
         bool resourcecheck(string city, int amount);
-        void Aiturns();
+        void AIturns();
+        int genRand();
         ~Graph();
     protected:
     private:
