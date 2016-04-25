@@ -70,22 +70,15 @@ void Graph::addVertex(string city_name)
     vertices.push_back(v);
 }
 
-bool Graph::findecity(string p_name, string e_name)
+bool Graph::findecity(string city_name)
 {
     for(int i = 0; i < vertices.size(); i++)
     {
-        if(vertices[i].name == p_name)
+        if((vertices[i].name == city_name) && (vertices[i].p_controlled == false))
         {
-            for(int j = 0; j < vertices[i].adj.size(); j++)
-            {
-                if((vertices[i].adj[j].v->name == e_name) && (vertices[i].adj[j].v->p_controlled == false))
-                {
-                    return true;
-                }
-            }
+            return true;
         }
     }
-
     return false;
 }
 
@@ -130,8 +123,6 @@ void Graph::print_p()
 void Graph::print_p_adj(string name)
 {
     bool found = false;
-
-    //insert check for player cities
     for(int i = 0; i < vertices.size(); i++)
     {
         if(name == vertices[i].name)
@@ -139,7 +130,7 @@ void Graph::print_p_adj(string name)
             found = true;
             for(int j = 0; j < vertices[i].adj.size(); j++)
             {
-                cout << "║  -City: " << vertices[i].adj[j].v->name << " -- " << "H: " << vertices[i].adj[j].v->health << " -- " << "R: " << " -- " << "D: " << vertices[i].adj[j].v->def << " -- " << "A: " << vertices[i].adj[j].v->attack << endl;
+                cout << "║  -City: " << vertices[i].adj[j].v->name << " -- " << "Health: " << vertices[i].adj[j].v->health << " -- " << "Resources: " << vertices[i].adj[j].v->resources << endl;
             }
         }
     }
@@ -166,20 +157,6 @@ void Graph::attack(string attack, string def)
                     }
                     vertices[i].adj[j].v->health -= damage;
                     vertices[i].resources -= 5;
-                    if(vertices[i].adj[j].v->health <= 0)
-                    {
-                        if(vertices[i].p_controlled == true)
-                        {
-                            vertices[i].adj[j].v->p_controlled = true;
-                        }
-                        else if(vertices[i].p_controlled != true)
-                        {
-                            vertices[i].adj[j].v->p_controlled = false;
-                        }
-                        vertices[i].adj[j].v->name += (" (" + vertices[i].name + ")");
-                        vertices[i].adj[j].v->ID = vertices[i].ID;
-                        vertices[i].adj[j].v->health = 60;
-                    }
                     break;
                 }
             }

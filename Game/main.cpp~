@@ -174,13 +174,13 @@ int main()
                                     }
                                     if(att_ch2 != "Back") //if input isnt back
                                     {
-                                        if(graph.findecity(att_ch1, att_ch2) == true)//and the city is found
+                                        if(graph.findecity(att_ch2) == true)//and the city is found
                                         {
                                             graph.attack(att_ch1, att_ch2); //run attack func on cities
                                             turn_completed = true; //complete the turn
                                             break; //break from current while
                                         }
-                                        else if(graph.findecity(att_ch1, att_ch2) == false) //if the city isnt found, flip bool, restart while loop
+                                        else if(graph.findecity(att_ch2) == false) //if the city isnt found, flip bool, restart while loop
                                         {
                                             name_error = true;
                                         }
