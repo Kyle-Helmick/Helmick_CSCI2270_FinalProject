@@ -32,6 +32,8 @@ class Printing
         void ResourcesMenu_2_B();
         void MenuEnd();
         void Title();
+        void win();
+        void lose();
         virtual ~Printing();
     protected:
     private:
