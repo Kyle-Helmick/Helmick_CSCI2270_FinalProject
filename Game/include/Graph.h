@@ -34,7 +34,7 @@ class Graph
         Graph();
         void addEdge();
         void addVertex(string cityname);
-        bool findecity(string city_name);
+        bool findecity(string city_name, string);
         bool findpcity(string city_name);
         void print();
         void print_p();
@@ -48,6 +48,7 @@ class Graph
         bool resourcecheck(string city, int amount);
         void AIturns();
         int genRand();
+        int genRand2(int);
         ~Graph();
     protected:
     private:
