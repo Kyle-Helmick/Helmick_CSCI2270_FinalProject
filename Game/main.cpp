@@ -180,7 +180,8 @@ int main()
                                     {
                                         if(graph.findecity(att_ch1, att_ch2) == true)//and the city is found
                                         {
-                                            graph.attack(att_ch1, att_ch2); //run attack func on cities
+
+                                            graph.playerattack(att_ch1, att_ch2);     //run attack func on cities
                                             turn_completed = true; //complete the turn
                                             break; //break from current while
                                         }

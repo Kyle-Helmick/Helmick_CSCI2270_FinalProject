@@ -161,6 +161,58 @@ void Graph::attack(string attack, string def)
             {
                 if(vertices[i].adj[j].v->name == def)
                 {
+                    /*int damage = 2*(vertices[i].attack - .4*(vertices[i].adj[j].v->def));
+                    if(damage < 0)
+                    {
+                        damage = damage*-1;
+                    }
+                    vertices[i].adj[j].v->health -= damage;
+                    vertices[i].resources -= 5;*/
+                    if(vertices[i].adj[j].v->health <= 0)
+                    {
+                        if(vertices[i].p_controlled == true)
+                        {
+                            vertices[i].adj[j].v->p_controlled = true;
+                        }
+                        else if(vertices[i].p_controlled == false)
+                        {
+                            vertices[i].adj[j].v->p_controlled = false;
+                        }
+                        string temp = vertices[i].adj[j].v->name;
+                        string open = "(";
+                        string close = ")";
+                        if(temp[temp.size()] == close[0])
+                        {
+                            while(temp[temp.size()-1] != open[0])
+                            {
+                                cout << "working" << endl;
+                                (temp.erase(temp[temp.size()-1],temp[temp.size()-1]));
+                            }
+                            (temp.erase(temp[temp.size()-1],temp[temp.size()-1]));
+                            temp += ("(" + vertices[i].name + ")");
+                            vertices[i].adj[j].v->name = temp;
+                        }
+                        vertices[i].adj[j].v->name += (" (" + vertices[i].name + ")");
+                        vertices[i].adj[j].v->ID = vertices[i].ID;
+                        vertices[i].adj[j].v->health = 60;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void Graph::playerattack(string attack, string def)
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if(vertices[i].name == attack)
+        {
+            for(int j = 0; i < vertices[i].adj.size(); j++)
+            {
+                if(vertices[i].adj[j].v->name == def)
+                {
                     int damage = 2*(vertices[i].attack - .4*(vertices[i].adj[j].v->def));
                     if(damage < 0)
                     {
@@ -203,20 +255,90 @@ void Graph::attack(string attack, string def)
     }
 }
 
+void Graph::checkTakeover(string attack, string def)
+{
+    for(int i = 0; i < vertices.size(); i++)
+    {
+        if(vertices[i].name == attack)
+        {
+            for(int j = 0; i < vertices[i].adj.size(); j++)
+            {
+                if(vertices[i].adj[j].v->name == def)
+                {
+                    /*int damage = 2*(vertices[i].attack - .4*(vertices[i].adj[j].v->def));
+                    if(damage < 0)
+                    {
+                        damage = damage*-1;
+                    }
+                    vertices[i].adj[j].v->health -= damage;
+                    vertices[i].resources -= 5;*/
+                    if(vertices[i].adj[j].v->health <= 0)
+                    {
+                        if(vertices[i].p_controlled == true)
+                        {
+                            vertices[i].adj[j].v->p_controlled = true;
+                        }
+                        else if(vertices[i].p_controlled == false)
+                        {
+                            vertices[i].adj[j].v->p_controlled = false;
+                        }
+                        string temp = vertices[i].adj[j].v->name;
+                        string open = "(";
+                        string close = ")";
+                        if(temp[temp.size()] == close[0])
+                        {
+                            while(temp[temp.size()-1] != open[0])
+                            {
+                                cout << "working" << endl;
+                                (temp.erase(temp[temp.size()-1],temp[temp.size()-1]));
+                            }
+                            (temp.erase(temp[temp.size()-1],temp[temp.size()-1]));
+                            temp += ("(" + vertices[i].name + ")");
+                            vertices[i].adj[j].v->name = temp;
+                        }
+                        vertices[i].adj[j].v->name += (" (" + vertices[i].name + ")");
+                        vertices[i].adj[j].v->ID = vertices[i].ID;
+                        vertices[i].adj[j].v->health = 60;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+}
+
+int Graph::vertexAttack(vertex_city attacker, vertex_city attackee){
+    int damage = 2*(attacker.attack - .4*(attackee.def));
+    //cout<<attacker.name<<" attacking "<<attackee.name<<", damage done should be: "<<damage<<endl;
+    int newhealth = attackee.health - damage;
+    //cout<<"attackee new health should be: "<<attackee.health<<endl;
+    return newhealth;
+
+}
+
 void Graph::fortify(string city)
 {
     for(int i = 0; i < vertices.size(); i++)
     {
         if(vertices[i].name == city)
         {
-            vertices[i].def += 5;
+            vertices[i].def += 2;
             vertices[i].resources -= 3;
             break;
         }
     }
 
 }
-
+vertex_city Graph::returncity(string cityname){
+    int x;
+    for (int i=0;i<vertices.size();i++){
+        if (vertices[i].name == cityname){
+            x = i;
+            break;
+        }
+    }
+    return vertices[x];
+}
 void Graph::resources(string from, string to, int amount)
 {
     for(int i = 0; i < vertices.size(); i++)
@@ -262,7 +384,7 @@ void Graph::turnresources()
 {
     for(int i = 0; i < vertices.size(); i++)
     {
-        vertices[i].resources += 5;
+        vertices[i].resources += 0;
     }
 }
 
@@ -289,19 +411,48 @@ void Graph::AIturns()
         {
             int ai_dec = genRand();
 
-            if ((ai_dec >= vertices[i].aggression) && (ai_dec<=50))
-            {
-                fortify(vertices[i].name);
-                for(int j = 0; j < vertices[i].adj.size(); j++)
-                {
-                    if(vertices[i].adj[j].v->p_controlled == true)
+            if (ai_dec < vertices[i].aggression){
+
+                if (vertices[i].resources>=5){
+                    int att_dec = genRand2(vertices[i].adj.size());
+                    int newhealth = vertexAttack(vertices[i], *vertices[i].adj[att_dec].v);
+                    vertices[i].adj[att_dec].v->health = newhealth;
+                    vertices[i].resources = vertices[i].resources - 5;
+                    checkTakeover(vertices[i].name, vertices[i].adj[att_dec].v->name);
+                    for(int j = 0; j < vertices[i].adj.size(); j++)
                     {
-                        cout<<"City "<<vertices[i].name<<" fortified."<<endl;
-                        break;
+                        if(vertices[i].adj[j].v->p_controlled == true)
+                        {
+                            cout<<"City "<<vertices[i].name<<" attacked city "<<vertices[i].adj[att_dec].v->name<<"!"<<endl;
+                            break;
+                        }
                     }
                 }
+                else if (vertices[i].resources<5){
+                    ai_dec = 60;
+                }
             }
-            else if (ai_dec > 50)
+
+
+            if ((ai_dec >= vertices[i].aggression) && (ai_dec<=50))
+            {
+                if (vertices[i].resources >= 4){
+                    fortify(vertices[i].name);
+                    for(int j = 0; j < vertices[i].adj.size(); j++)
+                    {
+                        if(vertices[i].adj[j].v->p_controlled == true)
+                        {
+                            cout<<"City "<<vertices[i].name<<" fortified."<<endl;
+                            break;
+                        }
+                    }
+                }
+                else if (vertices[i].resources<4){
+                    ai_dec = 60;
+                }
+            }
+
+            if (ai_dec > 50)
             {
                 ewait(vertices[i].name);
                 for(int j = 0; j < vertices[i].adj.size(); j++)
@@ -313,20 +464,7 @@ void Graph::AIturns()
                     }
                 }
             }
-            else if (ai_dec < vertices[i].aggression)
-            {
-                int att_dec = genRand2(vertices[i].adj.size());
-                //cout<<endl<<"THIS IS THE OUTPUT OF GENRAND2: "<<att_dec<<endl<<endl;
-                attack(vertices[i].name, vertices[i].adj[att_dec].v->name);
-                for(int j = 0; j < vertices[i].adj.size(); j++)
-                {
-                    if(vertices[i].adj[j].v->p_controlled == true)
-                    {
-                        cout<<"City "<<vertices[i].name<<" attacked city "<<vertices[i].adj[att_dec].v->name<<"!"<<endl;
-                        break;
-                    }
-                }
-            }
+
         }
     }
 }

@@ -51,6 +51,10 @@ class Graph
         bool win_check();
         bool lose_check();
         int genRand2(int adjsize);
+        int vertexAttack(vertex_city, vertex_city);
+        void checkTakeover(string, string);
+        vertex_city returncity(string);
+        void playerattack(string, string);
         ~Graph();
     protected:
     private:
