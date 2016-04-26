@@ -17,6 +17,7 @@ struct vertex_adj
 struct vertex_city
 {
     string name;
+    string namecat;
     bool p_controlled = false;
     bool visited = false;
     int resources = 10;
@@ -33,27 +34,25 @@ class Graph
     public:
         Graph();
         void addEdge();
-        void addVertex(string cityname);
-        bool findecity(string p_city, string e_city);
-        bool findpcity(string city_name);
+        void addVertex(string);
+        bool findecity(string, string);
+        bool findpcity(string);
         void print();
         void print_p();
-        void print_p_adj(string name);
-        void attack(string attack, string def);
-        void fortify(string city);
-        void resources(string from, string to, int amount);
+        void print_p_adj(string);
+        void fortify(string);
+        void resources(string, string, int);
         void pwait();
         void ewait(string city);
-        void turnresources();
-        bool resourcecheck(string city, int amount);
+        bool resourcecheck(string, int);
         void AIturns();
         int genRand();
         bool win_check();
         bool lose_check();
-        int genRand2(int adjsize);
+        int genRand2(int);
         int vertexAttack(vertex_city, vertex_city);
         void checkTakeover(string, string);
-        vertex_city returncity(string);
+        vertex_city &returncity(string);
         void playerattack(string, string);
         ~Graph();
     protected:

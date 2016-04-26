@@ -371,6 +371,7 @@ int main()
                     }
                 }
             }
+
             else if(action_menu == "Exit") //if the input is exit
             {
                 cout << "Are you sure? (Y/N): "; //ask them if they are sure
@@ -384,6 +385,7 @@ int main()
 
                 }
             }
+
             else
             {
                 menu_error = true; //if they input anything other than A, F, W, R, Exit then flip error
@@ -393,14 +395,15 @@ int main()
             {
                 printing.NewPage();
                 graph.AIturns();
-                graph.turnresources();
             }
+
             if(graph.win_check() == true)
             {
                 printing.NewPage();
                 printing.win();
                 break;
             }
+
             else if(graph.lose_check() == true)
             {
                 printing.NewPage();
