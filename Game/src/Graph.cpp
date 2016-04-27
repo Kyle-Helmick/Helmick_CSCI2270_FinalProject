@@ -69,7 +69,7 @@ void Graph::addVertex(string city_name)
     v.namecat = city_name;
     v.aggression = rand() % 10 + 15;
     v.attack = rand() % 10 + 15;
-    v.def = rand() % 10 + 15;
+    v.def = 40 - v.attack;
     vertices.push_back(v);
 }
 
@@ -164,6 +164,7 @@ void Graph::playerattack(string attack, string def)
     }
     defender->health = defender->health - damage;
     attacker->resources -= 5;
+    //cout<<"you attacked City "<<defender->name<<" for "<<damage<<" damage!"<<endl;
 
     if((defender->health < 0) || (defender->health == 0))
     {
@@ -286,7 +287,7 @@ void Graph::AIturns()
                     {
                         if(vertices[i].adj[j].v->p_controlled == true)
                         {
-                            cout<<"City "<<vertices[i].name << " (" << vertices[i].namecat << ") attacked city " << vertices[i].adj[att_dec].v->name << " (" << vertices[i].adj[att_dec].v->namecat << ")!"<<endl;
+                            cout<<"City "<<vertices[i].name << " (" << vertices[i].namecat << ") attacked city " << vertices[i].adj[att_dec].v->name << " (" << vertices[i].adj[att_dec].v->namecat << ")"<<endl;
                             break;
                         }
                     }

@@ -11,7 +11,7 @@ int main()
 {
     Printing printing;
     Graph graph;
-
+    srand(time(NULL));
     string main_menu_choice,user_name,cities_amount_string;
     string action_menu;
     string att_ch1,att_ch2;
