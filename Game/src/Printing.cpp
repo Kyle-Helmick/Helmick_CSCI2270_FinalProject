@@ -27,7 +27,8 @@ void Printing::ActionMenu()
     cout << "╔═══════════════════Action Menu═══════════════════╗" << endl;
     cout << "║         - Pick an action for your turn -        ║" << endl;
     cout << "║  -Attack (A) -- -5 Resources" << endl;
-    cout << "║  -Fortify (F) -- -3 Resources" << endl;
+    cout << "║  -Fortify Defense (F) -- -3 Resources" << endl;
+    cout << "║  -Fortify Attack (S) -- -3 Resources" << endl;
     cout << "║  -Wait (W) -- +4 Resources" << endl;
     cout << "║  -Manage Resources (R)" << endl;
     cout << "║  -Exit (Exit)                                   ║" << endl;

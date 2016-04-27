@@ -46,7 +46,7 @@ class Graph
         void ewait(string city);
         bool resourcecheck(string, int);
         void AIturns();
-        int genRand();
+        int genRand(int);
         bool win_check();
         bool lose_check();
         int genRand2(int);
@@ -54,6 +54,7 @@ class Graph
         void checkTakeover(string, string);
         vertex_city &returncity(string);
         void playerattack(string, string);
+        void fortifyAttack(string);
         ~Graph();
     protected:
     private:

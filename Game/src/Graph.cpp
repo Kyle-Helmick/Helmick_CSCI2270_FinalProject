@@ -218,6 +218,13 @@ void Graph::fortify(string city)
     defender->resources -= 3;
 }
 
+void Graph::fortifyAttack(string city)
+{
+    vertex_city *defender = &returncity(city);
+    defender->attack += 1;
+    defender->resources -= 3;
+}
+
 vertex_city& Graph::returncity(string cityname){
     int x;
     for (int i=0;i<vertices.size();i++){
@@ -276,7 +283,7 @@ void Graph::AIturns()
     {
         if (vertices[i].p_controlled == false)
         {
-            int ai_dec = genRand();
+            int ai_dec = genRand(vertices[i].aggression);
 
             if (ai_dec < vertices[i].aggression){
 
@@ -316,8 +323,25 @@ void Graph::AIturns()
                     ai_dec = 60;
                 }
             }
+            if ((ai_dec >= 70))
+            {
+                if (vertices[i].resources >= 4){
+                    fortifyAttack(vertices[i].name);
+                    for(int j = 0; j < vertices[i].adj.size(); j++)
+                    {
+                        if(vertices[i].adj[j].v->p_controlled == true)
+                        {
+                            cout<<"City "<<vertices[i].name<< " (" << vertices[i].namecat << ") fortified attack."<<endl;
+                            break;
+                        }
+                    }
+                }
+                else if (vertices[i].resources<4){
+                    ai_dec = 60;
+                }
+            }
 
-            if (ai_dec > 50)
+            if ((ai_dec > 50) && (ai_dec<70))
             {
                 ewait(vertices[i].name);
                 for(int j = 0; j < vertices[i].adj.size(); j++)
@@ -334,8 +358,8 @@ void Graph::AIturns()
     }
 }
 
-int Graph::genRand(){
-    int randnum = rand() % 70 + 1;
+int Graph::genRand(int mod){
+    int randnum = rand() % (70 + mod) + 1;
     return randnum;
 }
 

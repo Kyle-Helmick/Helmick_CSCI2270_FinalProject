@@ -267,6 +267,65 @@ int main()
                     turn_completed = false;
                 }
             }
+            else if(action_menu == "S") //if action_menu == F go into fortify menu, also using if statements because switch works better for ints
+            {
+                name_error = false; //set all errors to false
+                resources_error = false; //^
+                menu_error = false; //^
+
+                while(menu_back_1 == false) //while the menu isnt trying to go back to the action menu
+                {
+                    if(turn_completed == true) //if the turn is completed break from this menu
+                    {
+                        break;
+                    }
+                    printing.NewPage(); //print a new page for the next menu
+                    if(name_error == true) //if there is a name error print it and set bool to false
+                    {
+                        cout << "ERROR: Please enter a valid city name." << endl;
+                        name_error = false;
+                    }
+                    if(resources_error == true) //if there is a resource error print it and set bool to false
+                    {
+                        cout << "ERROR: You do not have enough resources." << endl;
+                        resources_error = false;
+                    }
+                    printing.FortifyMenu_B(); //print beginning of fortify menu
+                    graph.print_p(); //print player owned cities
+                    printing.MenuEnd(); //print menu end
+                    cout << "Input City Name: "; //input message
+                    getline(cin, def_ch); //getline for menu, using getline because we want to allow spaces
+                    if(def_ch == "Back") //if input is back set menu back 1 to true then break from this while loop
+                    {
+                        menu_back_1 = true;
+                        break;
+                    }
+                    if(def_ch != "Back") //if input isnt back
+                    {
+                        if(graph.findpcity(def_ch) == true) //and the city is found
+                        {
+                            if(graph.resourcecheck(def_ch, 3) == true) //and the city has enough resources
+                            {
+                                graph.fortifyAttack(def_ch); //fortify func
+                                turn_completed = true; //complete turn bool
+                                break; //break from while loop
+                            }
+                            else if(graph.resourcecheck(def_ch, 3) == false) //if the city doesnt have enough resources set error to true let loop
+                            {
+                                resources_error = true;
+                            }
+                        }
+                        else if(graph.findpcity(def_ch) == false) //if the city isnt found set error to true let loop
+                        {
+                            name_error = true;
+                        }
+                    }
+                }
+                if(menu_back_1 == true) //if the menu went from fortify to action menu dont complete the turn
+                {
+                    turn_completed = false;
+                }
+            }
             else if(action_menu == "W") //if action_menu == W go into wait
             {
                 graph.pwait(); //run wait func
