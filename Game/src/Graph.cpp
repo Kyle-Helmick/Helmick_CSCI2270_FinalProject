@@ -282,24 +282,22 @@ void Graph::AIturns()
                 if (vertices[i].resources>=5){
                     int att_dec = genRand2(vertices[i].adj.size());
                     int newhealth = vertexAttack(vertices[i], *vertices[i].adj[att_dec].v);
-                    vertices[i].adj[att_dec].v->health = newhealth;
-                    vertices[i].resources = vertices[i].resources - 5;
-                    checkTakeover(vertices[i].name, vertices[i].adj[att_dec].v->name);
                     for(int j = 0; j < vertices[i].adj.size(); j++)
                     {
                         if(vertices[i].adj[j].v->p_controlled == true)
                         {
-                            cout<<"City "<<vertices[i].name << " (" << vertices[i].namecat << ") attacked city " << vertices[i].adj[att_dec].v->name << " (" << vertices[i].adj[att_dec].v->namecat << ") !"<<endl;
+                            cout<<"City "<<vertices[i].name << " (" << vertices[i].namecat << ") attacked city " << vertices[i].adj[att_dec].v->name << " (" << vertices[i].adj[att_dec].v->namecat << ")!"<<endl;
                             break;
                         }
                     }
+                    vertices[i].adj[att_dec].v->health = newhealth;
+                    vertices[i].resources = vertices[i].resources - 5;
+                    checkTakeover(vertices[i].name, vertices[i].adj[att_dec].v->name);
                 }
                 else if (vertices[i].resources<5){
                     ai_dec = 60;
                 }
             }
-
-
             if ((ai_dec >= vertices[i].aggression) && (ai_dec<=50))
             {
                 if (vertices[i].resources >= 4){

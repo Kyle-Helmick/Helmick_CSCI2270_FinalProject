@@ -41,10 +41,10 @@ int main()
         {
             cout << "Please input your city's name: ";
             getline(cin, user_name);
-            if(user_name == "Back")
+            if(user_name == "Back" || user_name == "" || user_name == "A" || user_name == "B" || user_name == "C" || user_name == "D" || user_name == "E" || user_name == "F" || user_name == "G" || user_name == "H" || user_name == "I" || user_name == "J" || user_name == "K" || user_name == "L" || user_name == "M" || user_name == "N" || user_name == "O")
             {
                 printing.NewPage();
-                cout << "ERROR: You cannot name your city 'Back'" << endl;
+                cout << "ERROR: You cannot name your city " << "'" << user_name << "'." << endl;
                 printing.MainMenu();
             }
             else
