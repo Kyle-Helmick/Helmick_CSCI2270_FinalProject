@@ -1,7 +1,7 @@
 PROG = RunGame
 CC = g++
 OBJS = Graph.o Printing.o main.o
-CPPFLAGS = -Wall -std=c++11
+CPPFLAGS = -Wall -std=c++11 -w
 
 $(PROG) : $(OBJS)
 	$(CC) -o $(PROG) $(OBJS)
